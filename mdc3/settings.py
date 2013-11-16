@@ -78,7 +78,7 @@ MIDDLEWARE_CLASSES = (
 )
 
 TEMPLATE_CONTEXT_PROCESSORS = (
-    "django.core.context_processors.auth",
+    "django.contrib.auth.context_processors.auth",
     "django.core.context_processors.debug",
     "django.core.context_processors.i18n",
     "django.core.context_processors.media",
@@ -152,9 +152,12 @@ BBKING_TAG_LIBRARIES = (
 
 BBKING_USE_WORDFILTERS = True
 
-HAYSTACK_SITECONF = 'mdc3.search_sites'
-HAYSTACK_SEARCH_ENGINE = 'solr'
-HAYSTACK_SOLR_URL = 'http://127.0.0.1:8983/solr'
+HAYSTACK_CONNECTIONS = {
+    'default': {
+        'ENGINE': 'haystack.backends.solr_backend.SolrEngine',
+        'URL': 'http://127.0.0.1:8983/solr',
+    },
+}
 
 OEMBED_MAX_WIDTH = 640
 OEMBED_MAX_HEIGHT = 640
